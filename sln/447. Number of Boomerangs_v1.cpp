@@ -1,42 +1,39 @@
-/*454. 4Sum II
-Given four lists A, B, C, D of integer values, compute how many tuples (i, j, k, l) there are such that A[i] + B[j] + C[k] + D[l] is zero.
+/*447. Number of Boomerangs
+Given n points in the plane that are all pairwise distinct, a "boomerang" is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the tuple matters).
 
-To make problem a bit easier, all A, B, C, D have same length of N where 0 ≤ N ≤ 500. All integers are in the range of -228 to 228 - 1 and the result is guaranteed to be at most 231 - 1.
+Find the number of boomerangs. You may assume that n will be at most 500 and coordinates of points are all in the range [-10000, 10000] (inclusive).
 
 Example:
-
 Input:
-A = [ 1, 2]
-B = [-2,-1]
-C = [-1, 2]
-D = [ 0, 2]
+[[0,0],[1,0],[2,0]]
 
 Output:
 2
 
 Explanation:
-The two tuples are:
-1. (0, 0, 0, 1) -> A[0] + B[0] + C[0] + D[1] = 1 + (-2) + (-1) + 2 = 0
-2. (1, 1, 0, 0) -> A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0
+The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]]
 */
 class Solution {
 public:
-    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
-        unordered_map<int, int> record;
-        for(int i=0; i<C.size(); i++) {
-            for(int j=0; j<D.size(); j++) {
-                record[C[i]+D[j]]++;
-            }
-        }
-        
-        int res = 0;
-        for(int i=0; i<A.size(); i++) {
-            for(int j=0; j<B.size(); j++) {
-                if(record.find(0-A[i]-B[j]) != record.end())
-                    res += record[0-A[i]-B[j]];
-            }
+    int numberOfBoomerangs(vector<pair<int, int>>& points) {
+        int res=0;
+        for(int i=0; i<points.size(); i++) {
+            unordered_map<int,int> record;
+            for(int j=0; j<points.size(); j++) {
+                if (j != i)
+                    record[dis(points[i],points[j])]++;
+            }            
+            for(unordered_map<int,int> :: iterator iter=record.begin(); 
+                    iter != record.end(); iter++) {
+                res += (iter->second) * (iter->second-1);
+            }                      
         }
         
         return res;
+    }
+private:
+    int dis(const pair<int,int> &pa, const pair<int,int> &pb) {
+        return (pa.first-pb.first)*(pa.first-pb.first) + 
+            (pa.second-pb.second)*(pa.second-pb.second);
     }
 };
