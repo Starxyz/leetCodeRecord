@@ -46,7 +46,9 @@ private:
                 dia1[index+i] = false;
                 dia2[index-i + n-1] = false;
                 row.pop_back();
-            }
+            }// 当递归到index = n 时，函数返回，如果for循环还没结束，则继续寻找
+             // 所以求解的过程是在前n-1行确定后，在最后一行找不同的解
+             // 然后回溯到 n - 2 行确定，n-1行换位置继续找，依次类推
         }
         return;
     }
