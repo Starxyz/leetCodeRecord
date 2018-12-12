@@ -14,7 +14,7 @@ class Solution {
     private void rotateEdge(int[][] m, int tR, int tC, int dR, int dC) {
         int times = dC - tC; 
         int tmp = 0;
-        for (int i = 0; i != times; i++) {
+        for (int i = 0; i != times; i++) { // rotate 90 degress
             tmp = m[tR][tC+i];
             m[tR][tC+i] = m[dR-i][tC];
             m[dR-i][tC] = m[dR][dC-i];
