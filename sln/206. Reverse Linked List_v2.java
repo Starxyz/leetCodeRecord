@@ -38,3 +38,17 @@ class Solution {
         
     }
 }
+
+/*
+	version2
+        ListNode pre = null;
+        ListNode cur = head;
+        ListNode next = head;
+        
+        while (next != null) {
+            next = next.next;
+            cur.next = pre;            
+            pre = cur;
+            cur = next;
+        }
+*/
