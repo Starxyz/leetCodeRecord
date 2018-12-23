@@ -7,7 +7,7 @@ class Solution {
         int maxLen = 0;
         
         for (int j = 0; j < s.length(); j++) {
-            if (charMap[s.charAt(j)] >= i) {
+            if (charMap[s.charAt(j)] >= i) { // found repeated. update sliding windows
                 i = charMap[s.charAt(j)] + 1;
             }
             
