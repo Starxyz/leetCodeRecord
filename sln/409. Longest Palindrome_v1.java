@@ -3,20 +3,18 @@ class Solution {
         
         if (s == null || s.length() < 1) return 0;
         
-        HashSet<Character> set = new HashSet<>();
-        int count = 0;
+        int[] count = new int[256];
+        for (char c : s.toCharArray()) {
+            count[c]++;
+        }
         
-        for (int i = 0; i < s.length(); i++) {
-            if (set.contains(s.charAt(i))) {
-                set.remove(s.charAt(i));
-                count++;
-            }
-            else {
-                set.add(s.charAt(i));
+        int odd = 0;
+        for (int n : count) {
+            if (n % 2 != 0) {
+                odd++;
             }
         }
-        // if s = aaabbb, length = 5, we can produce palindrome
-        if (!set.isEmpty()) return count * 2 + 1;
-        return count * 2;
+        
+        return odd == 0 ? s.length() : s.length() - odd + 1; // only tolerate one char with odd number
     }
 }
