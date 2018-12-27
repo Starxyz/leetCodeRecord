@@ -17,12 +17,16 @@ class Solution {
         while (cur != null && cur.next != null) {
             ListNode next = cur.next;
             ListNode nextNext = cur.next.next;
-            
+			
+            // swap
             prev.next = next;
             next.next = cur;
             cur.next = nextNext;
+			
             prev = cur;
             cur = nextNext;
+			// example: dummy-> 1(node1) -> 2(node2) -> 3
+            //          dummy-> 2(node2) -> 1(node1) -> 3
         }
         
         return dummy.next;
