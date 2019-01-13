@@ -42,3 +42,27 @@ class Solution {
         return dummyHead.next;
     }
 }
+
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode fast = dummyHead;
+        ListNode slow = dummyHead;
+        
+        // let fast move to the nth node
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;   // n is always valid
+        }
+        
+        while (fast.next != null) {// {1} 1 promise slow.next.next is valid
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        
+        return dummyHead.next;
+    }
+}
