@@ -13,9 +13,10 @@ class Solution {
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
         ListNode cur = dummyHead;        
-        // move cur to the m-th node
+        
         ListNode front = null;// the head of section
         ListNode end = null;// the tail of section
+		// move cur to the （m-1)-th node
         for (int i = 0; i < m - 1; i++) {
             cur = cur.next;
         }
