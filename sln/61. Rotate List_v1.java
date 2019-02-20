@@ -30,3 +30,12 @@ class Solution {
         return node1;
     }
 }
+
+
+/* the cases make me fail
+[1,2]
+2
+
+[1,2]
+0
+*/
