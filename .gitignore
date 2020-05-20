@@ -2,5 +2,7 @@
 !*.c
 !*.cpp
 !*.java
+!*.py
 !*pic
 !*sln
+!*pySln
