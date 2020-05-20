@@ -13,9 +13,13 @@
 # Input: [4,1,2,1,2]
 # Output: 4
 
-def singleNumber(self, nums: List[int]) -> int:
+def singleNumber(nums: List[int]) -> int:
     res = 0 # 0 xor x = x
     for i in nums:
         res = res ^ i
 
     return res
+
+# so elegance
+def singleNumber2(nums: List[int]) -> int:
+    return 2 * sum(set(nums)) - sum(nums)
